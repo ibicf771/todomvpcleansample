@@ -1,0 +1,7 @@
+#Internal package file, do not edit.
+#Thu Nov 30 14:04:21 CST 2017
+0.baseType=DIRECTORY
+0.base=/Users/yangsimin/AndroidStudioProjects/DesignSupportLibraryDemo/todomvpsample/app/build/intermediates/transforms/dexMerger/debug/0
+0.path=classes.dex
+0.set=DEX
+count=1
