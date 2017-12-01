@@ -1,6 +1,7 @@
 package com.architecture.android.todo_mvp_sample.tasks.domain;
 
 import com.architecture.android.todo_mvp_sample.UseCase;
+import com.architecture.android.todo_mvp_sample.data.Task;
 import com.architecture.android.todo_mvp_sample.data.source.TaskRepository;
 
 /**
@@ -16,14 +17,22 @@ public class AddTask extends UseCase<AddTask.AddTaskRequest, AddTask.AddTaskRepo
     }
     @Override
     protected void executeUseCase(AddTaskRequest requestValues) {
-
+        mTaskRepository.addTask(requestValues.getTask());
+        getUseCaseCallback().onSuccess(new AddTaskReponse());
     }
 
-    public class AddTaskRequest implements UseCase.RequestValues{
+    public static class AddTaskRequest implements UseCase.RequestValues{
 
+        private Task mTask;
+        public AddTaskRequest(Task task){
+            mTask = task;
+        }
+        public Task getTask(){
+            return mTask;
+        }
     }
 
-    public class AddTaskReponse implements UseCase.ResponseValue{
+    public static class AddTaskReponse implements UseCase.ResponseValue{
 
     }
 }

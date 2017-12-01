@@ -8,7 +8,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.architecture.android.todo_mvp_sample.R;
+import com.architecture.android.todo_mvp_sample.UseCaseHandler;
 import com.architecture.android.todo_mvp_sample.data.source.TaskRepository;
+import com.architecture.android.todo_mvp_sample.tasks.domain.AddTask;
+import com.architecture.android.todo_mvp_sample.tasks.domain.DeleteTask;
+import com.architecture.android.todo_mvp_sample.tasks.domain.GetTasks;
 
 public class TasksActivity extends AppCompatActivity {
 
@@ -28,7 +32,13 @@ public class TasksActivity extends AppCompatActivity {
             transaction.commit();
         }
 
-        new TasksPresenter(TaskRepository.getInstance(), tasksFragment);
+//        new TasksPresenter(TaskRepository.getInstance(), tasksFragment);
+
+        UseCaseHandler useCaseHandler = UseCaseHandler.getInstance();
+        AddTask addTask = new AddTask(TaskRepository.getInstance());
+        DeleteTask deleteTask = new DeleteTask(TaskRepository.getInstance());
+        GetTasks getTasks = new GetTasks(TaskRepository.getInstance());
+        new TasksPresenter(tasksFragment, useCaseHandler, addTask, deleteTask, getTasks);
 
     }
 }
